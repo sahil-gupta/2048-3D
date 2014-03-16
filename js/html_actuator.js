@@ -140,7 +140,6 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   var tweet = document.createElement("a");
   tweet.classList.add("twitter-share-button");
   tweet.setAttribute("href", "https://twitter.com/share");
-  tweet.setAttribute("data-via", "joppi07");
   tweet.setAttribute("data-url", "http://git.io/JcE2GQ");
   tweet.setAttribute("data-counturl", "http://joppi.github.io/2048-3D/");
   tweet.textContent = "Tweet";

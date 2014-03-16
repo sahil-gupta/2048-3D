@@ -175,7 +175,7 @@ hr {
       font-weight: bold;
       height: 60px;
       line-height: 60px;
-      margin-top: 222px; }
+      margin-top: 100px; }
     .game-container .game-message .lower {
       display: block;
       margin-top: 59px; }
@@ -189,9 +189,17 @@ hr {
       height: 40px;
       line-height: 42px;
       margin-left: 9px; }
+    .game-container .game-message a.keep-playing-button {
+        display: none; }
+    .game-container .game-message .score-sharing {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px; }
     .game-container .game-message.game-won {
       background: rgba(237, 194, 46, 0.5);
       color: #f9f6f2; }
+      .game-container .game-message.game-won a.keep-playing-button {
+        display: inline-block; }
     .game-container .game-message.game-won, .game-container .game-message.game-over {
       display: block; }
 
@@ -501,6 +509,14 @@ hr {
 
 .game-explanation {
   margin-top: 50px; }
+
+.sharing {
+  margin-top: 20px;
+  text-align: center; }
+  .sharing > iframe, .sharing > span, .sharing > form {
+    display: inline-block;
+    vertical-align: middle; }
+
 /*
 @media screen and (max-width: 480px) {
   html, body {

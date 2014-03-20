@@ -58,13 +58,21 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
 
-  var retry = document.getElementsByClassName("retry-button")[0];
+  var retry = document.querySelector(".retry-button");
   retry.addEventListener("click", this.restart.bind(this));
   retry.addEventListener("touchend", this.restart.bind(this));
 
   var keepPlaying = document.querySelector(".keep-playing-button");
   keepPlaying.addEventListener("click", this.keepPlaying.bind(this));
   keepPlaying.addEventListener("touchend", this.keepPlaying.bind(this));
+    
+  var level1 = document.querySelector(".level1");
+  // level1.addEventListener("click", this.moveDown.bind(this));
+  level1.addEventListener("touchend", this.moveDown.bind(this));
+
+  var level3 = document.querySelector(".level3");
+  // level3.addEventListener("click", this.moveUp.bind(this));
+  level3.addEventListener("touchend", this.moveUp.bind(this));
 
   // Listen to swipe events
   var touchStartClientX, touchStartClientY;
@@ -106,4 +114,14 @@ KeyboardInputManager.prototype.restart = function (event) {
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();
   this.emit("keepPlaying");
+};
+
+KeyboardInputManager.prototype.moveDown = function (event) {
+  event.preventDefault();
+  this.emit("move", "4");
+};
+
+KeyboardInputManager.prototype.moveUp = function (event) {
+  event.preventDefault();
+  this.emit("move", "5");
 };

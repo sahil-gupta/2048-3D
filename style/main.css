@@ -91,7 +91,7 @@ h1.title {
     -moz-animation-fill-mode: both; }
 
 .score-container:after {
-  content: "Score"; }
+  content: "Time"; }
 
 .best-container:after {
   content: "Best"; }

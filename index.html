@@ -1,152 +1,118 @@
-<!doctype html>
+<!-- works best with fingers spread apart and palm flat and high up -->
+
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Leap64 by sahil-gupta</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <title>Leap64</title>
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/sahil-gupta/2048-3D">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/sahil-gupta/2048-3D/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/sahil-gupta/2048-3D/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>Leap64</h1>
-          <p>A 2048 clone you can play with the Leap Motion</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/sahil-gupta">sahil-gupta</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        
-
-<p>&lt;!DOCTYPE html&gt;
-
-</p>
-  Leap64<p></p>
-
-<p></p>
-  <div>
-    <div>
-      <h1>
-<a name="leap64" class="anchor" href="#leap64"><span class="octicon octicon-link"></span></a>Leap64</h1>
-      <div>
-        <div>0</div>
+<body>
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Leap64</h1>
+      <div class="scores-container">
+        <div class="score-container">0</div>
       </div>
     </div>
-    <p>Join the numbers inside cube and get to the <strong>64 tile!</strong></p>
+    <p class="game-intro">Join the numbers inside cube and get to the <strong>64 tile!</strong></p>
   <p> The squares represent layers of the cube - bottom, middle and top.</p>
 
-<pre><code>&lt;div class="game-container"&gt;
-  &lt;div class="game-message"&gt;
-    &lt;p&gt;&lt;/p&gt;
-    &lt;div class="lower"&gt;
-      &lt;a class="keep-playing-button"&gt;Keep going&lt;/a&gt;
-      &lt;a class="retry-button"&gt;Try again&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button">Keep going</a>
+          <a class="retry-button">Try again</a>
+        </div>
+      </div>
 
-  &lt;div class="grid-container level1"&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+      <div class="grid-container level1">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
 
-  &lt;div class="grid-container level2"&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+      <div class="grid-container level2">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
 
-  &lt;div class="grid-container level3"&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="grid-row"&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-      &lt;div class="grid-cell"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+      <div class="grid-container level3">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
 
-  &lt;div class="tile-container"&gt;
+      <div class="tile-container">
 
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p class="game-explanation"&gt;
-  &lt;strong class="important"&gt;How to play:&lt;/strong&gt; Use your &lt;strong&gt;Leap Motion&lt;/strong&gt; and &lt;strong&gt;swipe&lt;/strong&gt; to move the tiles. When two tiles with the same number touch, they &lt;strong&gt;merge into one!&lt;/strong&gt;
-&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;
-  Created by &lt;a href="http://gabrielecirulli.com" target="_blank"&gt;Gabriele Cirulli&lt;/a&gt;. Based on &lt;a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank"&gt;1024 by Veewo Studio&lt;/a&gt;. Conceptually similar to &lt;a href="http://asherv.com/threes/" target="_blank"&gt;Threes by Asher Vollmer&lt;/a&gt;. 3D added by &lt;a href="https://github.com/joppi/2048-3D" target="_blank"&gt;Michal Opler&lt;/a&gt;.
-&lt;/p&gt;
-&lt;p&gt;
-  Leap Motion control added by &lt;a href="http://en.wikipedia.org/wiki/Batman"&gt;Sahil Gupta&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Superman"&gt;Shiv Sunil&lt;/a&gt;.
-&lt;/p&gt;
-</code></pre>
-
-<p></p>
-</div>
-
-<p></p>
-
-<p></p>
-      </section>
-
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+
+    <p class="game-explanation">
+      <strong class="important">How to play:</strong> Use your <strong>Leap Motion</strong> and <strong>swipe</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+    </p>
+    <hr>
+    <p>
+      Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a>. Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a>. Conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer</a>. 3D added by <a href="https://github.com/joppi/2048-3D" target="_blank">Michal Opler</a>.
+    </p>
+    <p>
+      Leap Motion control added by <a href="http://en.wikipedia.org/wiki/Batman">Sahil Gupta</a> and <a href="http://en.wikipedia.org/wiki/Superman">Shiv Sunil</a>.
+    </p>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="js/leap-0.4.3.min.js"></script>
+  <script> var gameOn = true; </script>
+
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/application.js"></script>
+</body>
 </html>

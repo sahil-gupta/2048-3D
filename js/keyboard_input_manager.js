@@ -44,6 +44,52 @@ KeyboardInputManager.prototype.listen = function () {
     34:  5  // page down
   };
 
+  console.log("here");
+  var x; //swipe direction
+  var s0 = new Date().getTime(); //milliseconds
+  var s1 = new Date().getTime();
+  var isHorizontal, isVertical;
+  var gesture;
+  // Setup Leap loop with frame callback function
+  Leap.loop({enableGestures: true, frameEventName: "deviceFrame"}, function(frame) {
+    if (frame.gestures.length > 0) {
+      for (var i = 0; i < frame.gestures.length; i++) {
+        gesture = frame.gestures[i];
+        if (gesture.type == "swipe") {
+            s1 = new Date().getTime();
+            //Classify swipe as either horizontal, vertical, lateral
+            isHorizontal = (Math.abs(gesture.direction[0]) >= Math.abs(gesture.direction[1])) &&
+                                (Math.abs(gesture.direction[0]) >= Math.abs(gesture.direction[2]));
+            isVertical   = (Math.abs(gesture.direction[1]) >= Math.abs(gesture.direction[0])) &&
+                                (Math.abs(gesture.direction[1]) >= Math.abs(gesture.direction[2]));
+            //Classify in + or - direction
+            if(isHorizontal) {
+                if(gesture.direction[0] > 0)
+                    x = "1"; //right
+                else
+                    x = "3"; //left
+            } else if (isVertical) { //vertical
+                if(gesture.direction[1] > 0)
+                    x = "5"; //up
+                else
+                    x = "4"; //down
+            } else { //lateral
+              if(gesture.direction[2] > 0)
+                    x = "2"; //backward
+                else
+                    x = "0"; //forward
+            }
+         }
+      } //end frame gestures for-loop
+      if (s1 - s0 > 500) {
+          console.log(x); //print
+          self.emit("move",x); //make move here
+          s0 = s1;
+      }
+    }
+  }) //end Leap.loop callback
+
+
   document.addEventListener("keydown", function (event) {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;

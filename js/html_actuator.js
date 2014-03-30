@@ -1,31 +1,23 @@
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
-  this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
-  this.sharingContainer = document.querySelector(".score-sharing");
-
-  this.score = 0;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
-
   window.requestAnimationFrame(function () {
     self.clearContainer(self.tileContainer);
 
     grid.cells.forEach(function (column) {
       column.forEach(function (column3d) {
-	    column3d.forEach(function (cell) {
+      column3d.forEach(function (cell) {
           if (cell) {
             self.addTile(cell);
           }
-		});
+    });
       });
     });
-
-    self.updateScore(metadata.score);
-    self.updateBestScore(metadata.bestScore);
 
     if (metadata.terminated) {
       if (metadata.over) {
@@ -33,6 +25,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
       } else if (metadata.won) {
         self.message(true); // You win!
       }
+      gameOn = false;
     }
   });
 };
@@ -62,7 +55,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > 64) classes.push("tile-super");
 
   this.applyClasses(element, classes);
 
@@ -104,59 +97,19 @@ HTMLActuator.prototype.positionClass = function (position) {
   return "tile-position-" + position.x + "-" + position.y + "-" + position.z;
 };
 
-HTMLActuator.prototype.updateScore = function (score) {
-  this.clearContainer(this.scoreContainer);
-
-  var difference = score - this.score;
-  this.score = score;
-
-  this.scoreContainer.textContent = this.score;
-
-  if (difference > 0) {
-    var addition = document.createElement("div");
-    addition.classList.add("score-addition");
-    addition.textContent = "+" + difference;
-
-    this.scoreContainer.appendChild(addition);
-  }
-};
-
-HTMLActuator.prototype.updateBestScore = function (bestScore) {
-  this.bestContainer.textContent = bestScore;
-};
-
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
 
   if (typeof ga !== "undefined") {
-    ga("send", "event", "game", "end", type, this.score);
+    ga("send", "event", "game", "end", type);
   }
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
-
-  this.clearContainer(this.sharingContainer);
-  this.sharingContainer.appendChild(this.scoreTweetButton());
-  twttr.widgets.load();
 };
 
 HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
-};
-
-HTMLActuator.prototype.scoreTweetButton = function () {
-  var tweet = document.createElement("a");
-  tweet.classList.add("twitter-share-button");
-  tweet.setAttribute("href", "https://twitter.com/share");
-  tweet.setAttribute("data-url", "http://git.io/JcE2GQ");
-  tweet.setAttribute("data-counturl", "http://joppi.github.io/2048-3D/");
-  tweet.textContent = "Tweet";
-
-  var text = "I scored " + this.score + " points at 2048-3D, a game where you " +
-             "join numbers to score high! #2048game3D";
-  tweet.setAttribute("data-text", text);
-
-  return tweet;
 };

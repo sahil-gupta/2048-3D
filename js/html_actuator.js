@@ -6,7 +6,6 @@ function HTMLActuator() {
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
-
   window.requestAnimationFrame(function () {
     self.clearContainer(self.tileContainer);
 
